@@ -6,16 +6,16 @@
 
 Template Name:      Mobistore Online Mobile Eccommerce Template
 Version:            1.0.0
-Created Date:       20/11/2017 
+Created Date:       20/11/2017
 Author: EaseTemplate
-Author URL: https://easetemplate.com/               
+Author URL: https://easetemplate.com/
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 
 ------------------------------------------------------------------
 [CSS Table of contents]
 
-1.  Body / Typography 
+1.  Body / Typography
 2.  Form Elements
 3.  Buttons
 4.  General / Elements
@@ -41,7 +41,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 7. Content
 8. Footers
 9. Pages
-   9.1  Product List 
+   9.1  Product List
    9.2  Product Single
    9.3  About
    9.4  Cart
@@ -56,7 +56,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    10.1 Blog Default
    10.2 Blog Single
    ------------------------------------
-   
+
 11.Sidebar
    11.1 Widget
    ------------------------------------
@@ -152,7 +152,7 @@ a img.aligncenter { display: block; margin-left: auto; margin-right: auto; }
 .wp-caption p.wp-caption-text { font-size: 11px; line-height: 17px; margin: 0; padding: 0 4px 5px; }
 
 /*-----------------------------------
-    3. Buttons 
+    3. Buttons
 -----------------------------------*/
 .btn { font-family: 'Roboto Condensed', sans-serif; font-size: 15px; text-transform: uppercase; font-weight: 700; padding: 14px 26px; border-radius: 4px; line-height: 2; letter-spacing: 2px; border: transparent; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; transition: all 0.3s; word-wrap: break-word; white-space: normal !important; }
 .btn-primary { background-color: #fb730f; color: #fff; }
@@ -171,10 +171,10 @@ a img.aligncenter { display: block; margin-left: auto; margin-right: auto; }
 .btn-link:hover { color: #fb730f; text-decoration: none; }
 
 /*-----------------------------------
-    4. General / Elements 
+    4. General / Elements
 -----------------------------------*/
 
-/*----------------------- 
+/*-----------------------
     4.1 Section space :
 -------------------------*/
 
@@ -258,7 +258,7 @@ a img.aligncenter { display: block; margin-left: auto; margin-right: auto; }
 .pdtb40 { padding-bottom: 40px; padding-top: 40px; }
 
 /*--------------------------------
-4.4 Background & Block color 
+4.4 Background & Block color
 ----------------------------------*/
 .bg-light { background-color: #f8f9fa; }
 .bg-primary { background-color: #1aa644; color: #fff; }
@@ -280,7 +280,7 @@ a img.aligncenter { display: block; margin-left: auto; margin-right: auto; }
 .divider-line { border-bottom: 1px solid #e8ecf0; margin-top: 30px; margin-bottom: 30px; }
 
 /*--------------------------------
-4.5 Features Block 
+4.5 Features Block
 ----------------------------------*/
 .features-section { }
 .feature { text-align: center;  }
@@ -320,7 +320,7 @@ a img.aligncenter { display: block; margin-left: auto; margin-right: auto; }
 .arrow li:before { font-family: "FontAwesome"; display: inline-block; position: absolute; left: 0; font-size: 16px; color: #8e9091; content: '\f105'; }
 
 /*--------------------------------
-4.7 Call to actions 
+4.7 Call to actions
 ----------------------------------*/
 .cta-block { }
 .cta-icon { }
@@ -337,7 +337,7 @@ a img.aligncenter { display: block; margin-left: auto; margin-right: auto; }
 .widget-cta-title { }
 
 /*--------------------------------
- 4.8 Image Hover Effect 
+ 4.8 Image Hover Effect
 ----------------------------------*/
 img { width: auto; max-width: 100%; height: auto; margin: 0; padding: 0; border: none; line-height: normal; vertical-align: middle; }
 .imghover { display: block; position: relative; max-width: 100%; }
@@ -349,15 +349,15 @@ img { width: auto; max-width: 100%; height: auto; margin: 0; padding: 0; border:
 .imghover:hover::after { color: #fff; }
 
 /*--------------------------------
-4.9 Icon 
+4.9 Icon
 ----------------------------------*/
 
 /*--------------------------------
-5 Header / Navigations 
+5 Header / Navigations
 ----------------------------------*/
 
 /*--------------------
-    5.1 Header Regular 
+    5.1 Header Regular
 ----------------------*/
 
 .header-wrapper { padding-top: 20px; padding-bottom: 20px; z-index: 9; position: relative; background-color: #fff; }
@@ -467,7 +467,7 @@ img { width: auto; max-width: 100%; height: auto; margin: 0; padding: 0; border:
 .breadcrumb>li>a { color: #fb730f; }
 
 /*-----------------------------------
-    6. Slider 
+    6. Slider
 -------------------------------------*/
 .slider { margin-bottom: -40px; }
 .slider-img { position: relative; width: 100%; height: 520px; }
@@ -485,7 +485,7 @@ img { width: auto; max-width: 100%; height: auto; margin: 0; padding: 0; border:
 .brand-img { height: 40px; width: 40px; margin-bottom: 15px; }
 
 /*-----------------------------------
-7. Footer 
+7. Footer
 -------------------------------------*/
 .footer { background-color: #fff; padding-top: 50px; color: #848687; font-weight: 400; }
 .footer-title { margin-bottom: 32px; color: #1c1e1e; letter-spacing: 0px; font-size: 18px; font-weight: 400; }
@@ -531,11 +531,11 @@ img { width: auto; max-width: 100%; height: auto; margin: 0; padding: 0; border:
 /*--- easetemplate copyright link --*/
 
 /*-----------------------------------
-9. Pages 
+9. Pages
 -------------------------------------*/
 
 /*-------------------------
- 9.1 Product List 
+ 9.1 Product List
 ---------------------------*/
 
 .showcase-block { margin-bottom: 30px; min-height: 300px; background-color: #e8eaec; padding: 30px 30px 0px 30px; text-align: center; }
@@ -572,7 +572,7 @@ img { width: auto; max-width: 100%; height: auto; margin: 0; padding: 0; border:
 .newsletter-form .form-control { background-color: #fff; height: 58px; position: relative; border:transparent; }
 .newsletter-form button { }
 .newsletter-form button.btn { border-top-left-radius: 0px; border-bottom-left-radius: 0px; }
-.newsletter-title { margin-top: 5px font-size:30px; }
+.newsletter-title { margin-top: 5px; font-size:30px; }
 
 /*-------------------------
  9.2 Product Single
@@ -702,7 +702,7 @@ h5 { font-size: 14px; color: #1c1e1e; text-transform: uppercase; line-height: 1;
 .checkout-form .form-control { background-color: #f4f7f9; margin-bottom: 20px; }
 
 /*--------------------------
-9.6  404 error 
+9.6  404 error
 ---------------------------*/
 .error-wrapper { background-color: #fff; padding: 60px 40px; text-align: center; }
 
@@ -746,7 +746,7 @@ h5 { font-size: 14px; color: #1c1e1e; text-transform: uppercase; line-height: 1;
 .sing-form .form-control { background-color: #f4f7f9; }
 
 /*--------------------------------
-Login Form 
+Login Form
 ----------------------------------*/
 .login-input { position: relative; margin-bottom: -21px; }
 .login-input .form-control { background-color: #f4f7f9; padding-left: 35px; }
@@ -764,8 +764,8 @@ Class----------------
 
 .isotope-item { z-index: 2; }
 .isotope-hidden.isotope-item { pointer-events: none; z-index: 1; }
-.isotope, .isotope .isotope-item { / change duration value to whatever you like /
--webkit-transition-duration: 0.8s; -moz-transition-duration: 0.8s; transition-duration: 0.8s; }
+.isotope, .isotope .isotope-item {}
+-webkit-transition-duration: 0.8s; -moz-transition-duration: 0.8s; transition-duration: 0.8s;
 .isotope { -webkit-transition-property: height, width; -moz-transition-property: height, width; transition-property: height, width; }
 .isotope .isotope-item { -webkit-transition-property: -webkit-transform, opacity; -moz-transition-property: -moz-transform, opacity; transition-property: transform, opacity; }
 
@@ -889,7 +889,7 @@ Class----------------
 
 /* Large Devices, Wide Screens */
 @media only screen and (max-width:1440px) { }
-}
+
 @media only screen and (max-width:1200px) { }
 
 /* Medium Devices, Desktops */
