@@ -15,11 +15,13 @@ const ProductBlock = ({ props }) => {
           </h5>
           <div className="product-meta">
             <a href="#" className="product-price">
-              {props.discountedPrice ? props.discountedPrice : props.price}
+              {props.price}
             </a>
-            <a href="#" className="discounted-price">
-              <strike>$2000</strike>
-            </a>
+            {props.discountedPrice ? (
+              <a href="#" className="discounted-price">
+                <strike>{props.discountedPrice}</strike>
+              </a>
+            ) : null}
             <span className="offer-price">40%off</span>
           </div>
           <div className="shopping-btn">
