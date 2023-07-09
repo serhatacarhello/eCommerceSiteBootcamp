@@ -141,7 +141,7 @@ const Header = () => {
                           <a href="signup-form.html">Signup</a>{" "}
                         </li>
                         <li>
-                          <a href="404-page.html">404-page</a>{" "}
+                          <Link to="error404">404-page</Link>
                         </li>
                         <li>
                           <a href="styleguide.html">styleguide</a>{" "}
