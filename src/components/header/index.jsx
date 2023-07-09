@@ -1,4 +1,9 @@
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+
 const Header = () => {
+  const authState = useSelector((state) => state.authState);
+
   return (
     <>
       {/* top-header*/}
@@ -28,16 +33,20 @@ const Header = () => {
             {/* logo */}
             <div className="col-lg-3 col-md-3 col-sm-3 col-xs-8">
               <div className="logo">
-                <a href="index.html">
-                  <img src="images/logo.png" alt="" />{' '}
-                </a>
+                <Link to="/">
+                  <img src="assets/images/logo.png" alt="" />{" "}
+                </Link>
               </div>
             </div>
             {/* /.logo */}
             {/* search */}
             <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
               <div className="search-bg">
-                <input type="text" className="form-control" placeholder="Search Here" />
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Search Here"
+                />
                 <button type="Submit">
                   <i className="fa fa-search"></i>
                 </button>
@@ -48,20 +57,40 @@ const Header = () => {
             <div className="col-lg-3 col-md-3 col-sm-3 col-xs-12">
               <div className="account-section">
                 <ul>
-                  <li>
-                    <a href="#" className="title hidden-xs">
-                      My Account
-                    </a>
-                  </li>
-                  <li className="hidden-xs">|</li>
-                  <li>
-                    <a href="#" className="title hidden-xs">
-                      Register
-                    </a>
-                  </li>
+                  {authState.user ? (
+                    <>
+                      <li>
+                        <Link to="user" className="title hidden-xs">
+                          My Account
+                        </Link>
+                      </li>
+                      <li className="hidden-xs">|</li>
+                      <li>
+                        <a href="#" className="title hidden-xs">
+                          Logout
+                        </a>
+                      </li>
+                    </>
+                  ) : (
+                    <>
+                      <li>
+                        <Link to="auth/login" className="title hidden-xs">
+                          Login
+                        </Link>
+                      </li>
+                      <li className="hidden-xs">|</li>
+                      <li>
+                        <Link to="auth/register" className="title hidden-xs">
+                          Register
+                        </Link>
+                      </li>
+                    </>
+                  )}
+
                   <li>
                     <a href="#" className="title">
-                      <i className="fa fa-shopping-cart"></i> <sup className="cart-quantity">1</sup>
+                      <i className="fa fa-shopping-cart"></i>
+                      <sup className="cart-quantity">1</sup>
                     </a>
                   </li>
                 </ul>
@@ -80,7 +109,7 @@ const Header = () => {
                 <div id="navigation">
                   <ul>
                     <li className="active">
-                      <a href="index.html">Home</a>
+                      <Link to="/">Home</Link>
                     </li>
                     <li className="has-sub">
                       <a href="#">Mobiles</a>
@@ -103,19 +132,19 @@ const Header = () => {
                           <a href="checkout.html">Checkout Form</a>
                         </li>
                         <li>
-                          <a href="cart.html">Cart</a>{' '}
+                          <a href="cart.html">Cart</a>{" "}
                         </li>
                         <li>
-                          <a href="login-form.html">Login</a>{' '}
+                          <a href="login-form.html">Login</a>{" "}
                         </li>
                         <li>
-                          <a href="signup-form.html">Signup</a>{' '}
+                          <a href="signup-form.html">Signup</a>{" "}
                         </li>
                         <li>
-                          <a href="404-page.html">404-page</a>{' '}
+                          <a href="404-page.html">404-page</a>{" "}
                         </li>
                         <li>
-                          <a href="styleguide.html">styleguide</a>{' '}
+                          <a href="styleguide.html">styleguide</a>{" "}
                         </li>
                       </ul>
                     </li>
