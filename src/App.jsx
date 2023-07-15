@@ -9,6 +9,8 @@ import RegisterPage from "./pages/auth/register";
 import Error404 from "./pages/error404";
 import { useDispatch } from "react-redux";
 import { SET_CATEGORIES } from "./redux/reducers/categoryReducer";
+import AboutPage from "./pages/AboutPage";
+import ProductListPage from "./pages/ProductListPage";
 
 const App = () => {
   const api = useApi();
@@ -27,7 +29,7 @@ const App = () => {
         payload: result.data,
       });
     })();
-  }, [api]);
+  }, [dispatch, api]);
 
   return (
     <>
@@ -35,10 +37,15 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<MainPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          {/* auth */}
           <Route path="/auth">
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
           </Route>
+          {/* product page */}
+          <Route path="/category/:code" element={<ProductListPage />} />
+          {/* error page */}
           <Route path="/*" element={<Error404 />} />
         </Routes>
         <Footer />

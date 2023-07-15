@@ -52,7 +52,7 @@ const Footer = () => {
                   <a href="#">Blog</a>
                 </li>
                 <li>
-                  <a href="#">Contact</a>
+                  <a href="contact-us.html">Contact Us</a>
                 </li>
               </ul>
             </div>
