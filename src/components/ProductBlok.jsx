@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import useApi from "../hooks/useApi";
+import { Link } from "react-router-dom";
 
 const ProductBlok = (props) => {
-  const [price, setPrice] = useState("");
+  const [productDetail, setProductDetail] = useState(null);
   const api = useApi();
 
   useEffect(() => {
@@ -11,9 +12,7 @@ const ProductBlok = (props) => {
       const ProductDetailResponse = await api.get(
         "shop/product-variants/" + variantCode
       );
-
-      console.log("ProductDetailResponce >>>", ProductDetailResponse.data);
-      setPrice(ProductDetailResponse?.data?.price);
+      setProductDetail(ProductDetailResponse?.data);
     })();
   }, []);
 
@@ -35,25 +34,26 @@ const ProductBlok = (props) => {
           <h5>
             <a href="#" className="product-title">
               {props.product.name}
-              <strong>(128GB, Black)</strong>
             </a>
           </h5>
           <div className="product-meta">
             <a href="#" className="product-price">
-              ${price}
+              ${productDetail?.price}
             </a>
             <a href="#" className="discounted-price">
-              $1400
+              ${productDetail?.originalPrice}
             </a>
-            <span className="offer-price">20%off</span>
           </div>
           <div className="shopping-btn">
-            <a href="#" className="product-btn btn-like">
-              <i className="fa fa-heart"></i>
-            </a>
-            <a href="#" className="product-btn btn-cart">
+            <Link
+              to={`/product/${props.product.code}`}
+              className="product-btn btn-like"
+            >
+              <i className="fa fa-arrow-right"></i>
+            </Link>
+            {/* <a href="#" className="product-btn btn-cart">
               <i className="fa fa-shopping-cart"></i>
-            </a>
+            </a> */}
           </div>
         </div>
       </div>

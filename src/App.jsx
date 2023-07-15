@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { SET_CATEGORIES } from "./redux/reducers/categoryReducer";
 import AboutPage from "./pages/AboutPage";
 import ProductListPage from "./pages/ProductListPage";
+import ProductDetailPage from "./pages/ProductDetailPage";
 
 const App = () => {
   const api = useApi();
@@ -45,6 +46,7 @@ const App = () => {
           </Route>
           {/* product page */}
           <Route path="/category/:code" element={<ProductListPage />} />
+          <Route path="/product/:code" element={<ProductDetailPage />} />
           {/* error page */}
           <Route path="/*" element={<Error404 />} />
         </Routes>
