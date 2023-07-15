@@ -7,21 +7,26 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/auth/login";
 import RegisterPage from "./pages/auth/register";
 import Error404 from "./pages/error404";
+import { useDispatch } from "react-redux";
+import { SET_CATEGORIES } from "./redux/reducers/categoryReducer";
 
 const App = () => {
   const api = useApi();
+  const dispatch = useDispatch();
   useEffect(() => {
-    api
-      .get("shop/taxons", {
+    //immediate call func
+    (async () => {
+      const result = await api.get("shop/taxons", {
         params: {
           page: 1,
           itemsPerPage: 30,
         },
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => console.log("err", err));
+      });
+      dispatch({
+        type: SET_CATEGORIES,
+        payload: result.data,
+      });
+    })();
   }, [api]);
 
   return (
