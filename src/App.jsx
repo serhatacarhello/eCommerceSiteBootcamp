@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import { SET_CATEGORIES } from "./redux/reducers/categoryReducer";
 import AboutPage from "./pages/AboutPage";
 import ProductListPage from "./pages/ProductListPage";
-import ProductDetailPage from "./pages/ProductDetailPage";
+import ProductDetailPage from "./pages/product-detail-page";
 
 const App = () => {
   const api = useApi();

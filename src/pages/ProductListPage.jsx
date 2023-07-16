@@ -24,7 +24,7 @@ const ProductListPage = () => {
       setProducts(productsResponse.data);
     })();
   }, [params.code]);
-  console.log(products);
+  // console.log(products);
   return (
     <>
       <div className="content">

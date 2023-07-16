@@ -1,17 +1,22 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import useApi from "../hooks/useApi";
+import useApi from "../../hooks/useApi";
+import ProductBasicInfo from "./components/ProductBasicInfo";
+import ProductDescription from "./components/ProductDescription";
+import ProductReviews from "./components/ProductReviews";
 
 const ProductDetailPage = () => {
+  const [loading, setLoading] = useState(true);
   const params = useParams();
   const api = useApi();
+
   const [productDetail, setProductDetail] = useState(null);
   const [variants, setVariants] = useState([]);
 
   useEffect(() => {
+    setLoading(true);
     (async () => {
       const detailResponse = await api.get(`shop/products/${params.code}`);
-      setProductDetail(detailResponse.data);
       // create promises
       const promises = detailResponse.data.variants.map(
         (variant_item_string) => {
@@ -25,14 +30,29 @@ const ProductDetailPage = () => {
         "🚀 ~ file: ProductDetailPage.jsx:24 ~ variantResponses:",
         variantResponses
       );
+      //set productDetail data
+      setProductDetail(detailResponse.data);
       // get response.data
       setVariants(variantResponses.map((item) => item.data));
+      setLoading(false);
     })();
   }, [params.code]);
 
+  console.log(
+    "🚀 ~ file: ProductDetailPage.jsx:34 ~ ProductDetailPage ~ productDetail:",
+    productDetail
+  );
+
+  console.log(variants);
+  if (loading) {
+    <div style={{ backgroundColor: "red", fontSize: 20 }}>Loading....</div>;
+  }
+
   return (
-    <div>
-      <h2>ProductDetailPage</h2>
+    <div className="content">
+      <ProductBasicInfo />
+      <ProductDescription />
+      <ProductReviews />
     </div>
   );
 };

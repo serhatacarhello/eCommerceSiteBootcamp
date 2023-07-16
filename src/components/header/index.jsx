@@ -5,7 +5,7 @@ const Header = () => {
   const authState = useSelector((state) => state.authState);
 
   const categories = useSelector((state) => state.categoryState.categories);
-  console.log("🚀 ~ file: index.jsx:8 ~ Header ~ categoriesData:", categories);
+  // console.log("🚀 ~ file: index.jsx:8 ~ Header ~ categoriesData:", categories);
 
   return (
     <>
