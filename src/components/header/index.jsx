@@ -94,7 +94,7 @@ const Header = () => {
                   )}
 
                   <li>
-                    <a href="#" className="title">
+                    <Link to="/cart" className="title">
                       <i className="fa fa-shopping-cart"></i>
                       <sup className="cart-quantity">
                         {/*total  quantity for cart */}
@@ -103,7 +103,7 @@ const Header = () => {
                           0
                         )}
                       </sup>
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>

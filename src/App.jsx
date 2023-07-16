@@ -13,12 +13,13 @@ import AboutPage from "./pages/AboutPage";
 import ProductListPage from "./pages/ProductListPage";
 import ProductDetailPage from "./pages/product-detail-page";
 import { SET_CART } from "./redux/reducers/cartReducer";
+import CartPage from "./pages/cart-page/cartPage";
 
 const App = () => {
   const api = useApi();
   const dispatch = useDispatch();
   const cartState = useSelector((state) => state.cartState);
-  console.log("🚀 ~ file: App.jsx:20 ~ App ~  cartState:", cartState);
+  // console.log("🚀 ~ file: App.jsx:20 ~ App ~  cartState:", cartState);
 
   useEffect(() => {
     //immediate call func
@@ -33,38 +34,42 @@ const App = () => {
         type: SET_CATEGORIES,
         payload: result.data,
       });
-
-      /*
+    })();
+  }, []);
+  // delete işleminden sonra state teki değişiklikleri tekrar alabilmek için ayrı async fun yazdık
+  (async () => {
+    /*
       Durumlar şunlar:
       - LS da hic token yoksa olustur yada al
       - lS da var ama Redux ta null ise mevcut tokeni kullanarak cart bilgisini al
       */
-      const localStorageCartToken = localStorage.getItem("cartToken");
+    const localStorageCartToken = localStorage.getItem("cartToken");
 
-      if (localStorageCartToken === null) {
-        // create cartToken send a {}
-        const cartResponse = await api.post(`shop/orders`, {});
-        // save cartToken to LS
-        localStorage.setItem("cartToken", cartResponse.data.tokenValue);
-        // send data to redux store
-        dispatch({
-          type: SET_CART,
-          payload: cartResponse.data,
-        });
-      } else if (localStorageCartToken && cartState.cart === null) {
-        //
-        const cartResponse = await api.get(
-          `shop/orders/${localStorageCartToken}`
-        );
-        dispatch({
-          type: SET_CART,
-          payload: cartResponse.data,
-        });
-      }
-    })();
-  }, []);
+    if (localStorageCartToken === null) {
+      // create cartToken send a {}
+      const cartResponse = await api.post(`shop/orders`, {});
+      // save cartToken to LS
+      localStorage.setItem("cartToken", cartResponse.data.tokenValue);
+      // send data to redux store
+      dispatch({
+        type: SET_CART,
+        payload: cartResponse.data,
+      });
 
-  console.log("cartState<<<<<<<<<<<<<<<<<<<<<<<", cartState);
+      // bu kısmın calışması için cartReducer içinde REMOVE_CART action type ta cart i null a çektik
+    } else if (localStorageCartToken && cartState.cart === null) {
+      //
+      const cartResponse = await api.get(
+        `shop/orders/${localStorageCartToken}`
+      );
+      dispatch({
+        type: SET_CART,
+        payload: cartResponse.data,
+      });
+    }
+  })();
+
+  // console.log("cartState<<<<<<<<<<<<<<<<<<<<<<<", cartState);
 
   return (
     <>
@@ -81,6 +86,8 @@ const App = () => {
           {/* product page */}
           <Route path="/category/:code" element={<ProductListPage />} />
           <Route path="/product/:code" element={<ProductDetailPage />} />
+          <Route path="/cart" element={<CartPage />} />
+
           {/* error page */}
           <Route path="/*" element={<Error404 />} />
         </Routes>

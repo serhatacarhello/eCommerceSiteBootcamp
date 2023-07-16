@@ -15,7 +15,7 @@ const cartReducer = (state = initialState, action) => {
     case REMOVE_CART:
       return {
         ...state,
-        cart: action.payload,
+        cart: null,
       };
 
     default:

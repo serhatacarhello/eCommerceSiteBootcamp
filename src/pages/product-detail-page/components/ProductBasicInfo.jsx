@@ -11,6 +11,7 @@ const ProductBasicInfo = ({ product, variants }) => {
   //state for variant index
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
+
   const api = useApi();
   const dispatch = useDispatch();
   const cartState = useSelector((state) => state.cartState);
