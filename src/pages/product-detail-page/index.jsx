@@ -55,9 +55,9 @@ const ProductDetailPage = () => {
 
   return (
     <div className="content">
-      <ProductBasicInfo />
-      <ProductDescription />
-      <ProductReviews />
+      <ProductBasicInfo product={productDetail} variants={variants} />
+      <ProductDescription product={productDetail} variants={variants} />
+      <ProductReviews product={productDetail} variants={variants} />
     </div>
   );
 };
