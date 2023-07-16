@@ -1,42 +1,30 @@
 import { useDispatch, useSelector } from "react-redux";
 import useApi from "../../hooks/useApi";
 import { REMOVE_CART, SET_CART } from "../../redux/reducers/cartReducer";
+import { useState } from "react";
 
 const CartPage = () => {
   const api = useApi();
   const dispatch = useDispatch();
   const cartState = useSelector((state) => state.cartState);
+  const [inputValue, setInputValue] = useState(null);
+
   console.log("🚀 ~ file: cartPage.jsx:6 ~ CartPage ~ cartState:", cartState);
 
-  const handleInputValueChange = (e, item) => {
-    //update product cart
-    // fiyatı miktar artınce güncelleme için fonksiyon yaz
-    // /api/v2/shop/orders/{tokenValue}/items/{orderItemId} api url
-    // request body
-    //{
-    //   "quantity": 0
-    // }
-    //! a problem occured here !!!!! try to solve problem
-
-    const quantity = parseInt(e.target.value);
-    console.log(
-      "🚀 ~ file: cartPage.jsx:22 ~ handleInputValueChange ~ quantity:",
-      quantity
-    );
-    //! a problem occured here !!!!! try to solve problem
-    console.log(
-      "item.id",
-      item.id
-    )(async () => {
+  //! a problem occured here !!!!! try to solve problem cors policy error occured
+  const handleInputValueChange = async (item) => {
+    const quantity = parseInt(inputValue);
+    console.log(cartState.cart?.tokenValue);
+    try {
       const cartResponse = await api.patch(
         `shop/orders/${cartState.cart?.tokenValue}/items/${item.id}`,
         {
-          headers: {
-            ["Content-Type"]: "application/merge-patch+json",
-          },
+          quantity,
         },
         {
-          quantity,
+          headers: {
+            "Content-Type": "application/merge-patch+json",
+          },
         }
       );
       console.log("cartResponse", cartResponse);
@@ -44,14 +32,11 @@ const CartPage = () => {
         type: SET_CART,
         payload: cartResponse.data,
       });
-    })();
-
-    // inc product count
-    // dec product store
-    console.log(
-      "button clicked ınput value button<<<<<<<<<<<<<<<<>>>>>>>>>>>>"
-    );
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
   };
+
   return (
     <>
       <div className="space-medium">
@@ -100,15 +85,14 @@ const CartPage = () => {
                                 <div className="product-quantity">
                                   <div className="quantity">
                                     <input
-                                      // fiyatı miktar artınce güncelleme için fonksiyon yaz
-                                      // /api/v2/shop/orders/{tokenValue}/items/{orderItemId} api url
-                                      // request body
-                                      //{
-                                      //   "quantity": 0
-                                      // }
-                                      onChange={(e) =>
-                                        handleInputValueChange(e, item)
-                                      }
+                                      onChange={(e) => {
+                                        setInputValue(e.target.value);
+                                        handleInputValueChange(item);
+                                        console.log(
+                                          "inputvalue changed",
+                                          e.target.value
+                                        );
+                                      }}
                                       type="number"
                                       className="input-text qty text"
                                       step="1"
