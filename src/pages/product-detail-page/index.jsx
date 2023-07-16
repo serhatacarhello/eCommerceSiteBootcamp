@@ -44,8 +44,13 @@ const ProductDetailPage = () => {
   );
 
   console.log(variants);
+
   if (loading) {
-    <div style={{ backgroundColor: "red", fontSize: 20 }}>Loading....</div>;
+    return (
+      <div style={{ backgroundColor: "red", fontSize: 20, minHeight: "25vh" }}>
+        Loading....
+      </div>
+    );
   }
 
   return (
