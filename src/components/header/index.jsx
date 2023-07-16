@@ -1,11 +1,14 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import cartReducer from "./../../redux/reducers/cartReducer";
 
 const Header = () => {
   const authState = useSelector((state) => state.authState);
 
   const categories = useSelector((state) => state.categoryState.categories);
   // console.log("🚀 ~ file: index.jsx:8 ~ Header ~ categoriesData:", categories);
+  const cartState = useSelector((state) => state.cartState);
+  console.log("🚀 ~ file: index.jsx:11 ~ Header ~ cartState:", cartState);
 
   return (
     <>
@@ -93,7 +96,13 @@ const Header = () => {
                   <li>
                     <a href="#" className="title">
                       <i className="fa fa-shopping-cart"></i>
-                      <sup className="cart-quantity">1</sup>
+                      <sup className="cart-quantity">
+                        {/*total  quantity for cart */}
+                        {cartState.cart?.items.reduce(
+                          (total, item) => total + item.quantity,
+                          0
+                        )}
+                      </sup>
                     </a>
                   </li>
                 </ul>

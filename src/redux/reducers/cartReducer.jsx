@@ -3,6 +3,7 @@ const initialState = {
 };
 export const SET_CART = "SET_CART";
 export const REMOVE_CART = "REMOVE_CART";
+
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_CART:

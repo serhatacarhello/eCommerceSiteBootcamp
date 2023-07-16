@@ -1,15 +1,38 @@
 import React, { useState } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { combineBaseUrl } from "../../../utils";
+import useApi from "../../../hooks/useApi";
+import { useDispatch, useSelector } from "react-redux";
+import { SET_CART } from "../../../redux/reducers/cartReducer";
 
 const ProductBasicInfo = ({ product, variants }) => {
   console.log("product", product);
   console.log("variants", variants);
   //state for variant index
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const api = useApi();
+  const dispatch = useDispatch();
+  const cartState = useSelector((state) => state.cartState);
 
   const handleAddButtonClick = () => {
     //add product to basket
+
+    (async () => {
+      const cartResponse = await api.post(
+        `shop/orders/${cartState.cart?.tokenValue}/items`,
+        {
+          productVariant: variants[selectedVariantIndex].code,
+          quantity,
+        }
+      );
+      console.log("cartResponse", cartResponse);
+      dispatch({
+        type: SET_CART,
+        payload: cartResponse.data,
+      });
+    })();
+
     // inc product count
     // dec product store
     console.log("button clicked Add button<<<<<<<<<<<<<<<<>>>>>>>>>>>>");
@@ -56,6 +79,7 @@ const ProductBasicInfo = ({ product, variants }) => {
                     </div>
                     <p className="product-price" style={{ fontSize: "38px" }}>
                       ${variants[selectedVariantIndex].price}
+                      &nbsp;
                       <strike>
                         ${variants[selectedVariantIndex].originalPrice}
                       </strike>
@@ -75,13 +99,16 @@ const ProductBasicInfo = ({ product, variants }) => {
                             style={{ width: "100%-!important" }}
                           >
                             <input
+                              onChange={(e) =>
+                                setQuantity(parseInt(e.target.value))
+                              }
                               type="number"
                               className="input-text qty text"
                               step="1"
                               min="1"
-                              max="6"
+                              max="10"
                               name="quantity"
-                              value="1"
+                              value={quantity}
                               title="Qty"
                               size="4"
                               pattern="[0-9]*"

@@ -3,19 +3,23 @@ import Footer from "./components/footer";
 import Header from "./components/header";
 import MainPage from "./pages/MainPage";
 import useApi from "./hooks/useApi";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, json } from "react-router-dom";
 import LoginPage from "./pages/auth/login";
 import RegisterPage from "./pages/auth/register";
 import Error404 from "./pages/error404";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { SET_CATEGORIES } from "./redux/reducers/categoryReducer";
 import AboutPage from "./pages/AboutPage";
 import ProductListPage from "./pages/ProductListPage";
 import ProductDetailPage from "./pages/product-detail-page";
+import { SET_CART } from "./redux/reducers/cartReducer";
 
 const App = () => {
   const api = useApi();
   const dispatch = useDispatch();
+  const cartState = useSelector((state) => state.cartState);
+  console.log("🚀 ~ file: App.jsx:20 ~ App ~  cartState:", cartState);
+
   useEffect(() => {
     //immediate call func
     (async () => {
@@ -29,8 +33,38 @@ const App = () => {
         type: SET_CATEGORIES,
         payload: result.data,
       });
+
+      /*
+      Durumlar şunlar:
+      - LS da hic token yoksa olustur yada al
+      - lS da var ama Redux ta null ise mevcut tokeni kullanarak cart bilgisini al
+      */
+      const localStorageCartToken = localStorage.getItem("cartToken");
+
+      if (localStorageCartToken === null) {
+        // create cartToken send a {}
+        const cartResponse = await api.post(`shop/orders`, {});
+        // save cartToken to LS
+        localStorage.setItem("cartToken", cartResponse.data.tokenValue);
+        // send data to redux store
+        dispatch({
+          type: SET_CART,
+          payload: cartResponse.data,
+        });
+      } else if (localStorageCartToken && cartState.cart === null) {
+        //
+        const cartResponse = await api.get(
+          `shop/orders/${localStorageCartToken}`
+        );
+        dispatch({
+          type: SET_CART,
+          payload: cartResponse.data,
+        });
+      }
     })();
-  }, [dispatch, api]);
+  }, []);
+
+  console.log("cartState<<<<<<<<<<<<<<<<<<<<<<<", cartState);
 
   return (
     <>
